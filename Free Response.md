@@ -30,19 +30,25 @@ Programs accept input to achieve their intended functionality. **Describe at lea
 - If there are multiple parts to this question, write the part letter with your response.
 
 ```JS
-DOMSelectors.form.addEventListener('submit', function(event) {
-         event.preventDefault()
-         const input = DOMSelectors.input.value;
-         displayQuestion(input)
-     });
-
-     function displayQuestion(input) {
-         if (i < input) {
-             let q = qa[i]
-             console.log(q)
-             clear()
-             DOMSelectors.question.insertAdjacentHTML("beforeend", `<h1>${q.question}</h1>`)
-         }
+function final(array) {
+    let a = 0;
+    let b = 0;
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].includes("Correct")) {
+        a++;
+      }
+      if (array[i].includes("Incorrect")) {
+        b++;
+      }
+    }
+    clear();
+    const correct = (a * 100) / DOMSelectors.input.value;
+    const incorrect = (b * 100) / DOMSelectors.input.value;
+    DOMSelectors.question.insertAdjacentHTML(
+      "beforeend",
+      `<h1>You got ${correct}% of them right and ${incorrect}% of them wrong!</h1>`
+    );
+  }
 ```
 
 ##### This gets an input from the user where, based on what number they input, a certain number of trivia questions are thus displayed in the HTML.
